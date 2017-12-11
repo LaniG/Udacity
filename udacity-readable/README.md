@@ -13,7 +13,7 @@ This web app was built to demonstrate my understanding of the React-Redux relati
 
 ## Getting up and running with the App
 
-After cloning or Downloading the Zip file, place the extracted folder into the project directory on your machine. Navigate to the frontend folder [ cd frontend ] then:
+After cloning or Downloading the Zip file, place the extracted folder into the project directory on your machine. Navigate to the root folder [ cd udacity-readable ] then:
 
 npm install
 npm start
