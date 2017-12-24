@@ -1,12 +1,13 @@
 import React from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
-import { white } from '../Utils/Colors'
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { white, purple } from '../Utils/Colors'
 
 const CardView = () => {
   return(
-    <View style={styles.cardItem}>
+    <TouchableOpacity style={styles.cardItem}>
       <Text style={styles.cardHeader}> React </Text>
-    </View>
+      <Text style={styles.cardNumber}>10 Cards</Text>
+    </TouchableOpacity>
   )
 }
 
@@ -15,8 +16,8 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 20,
-    borderWidth: 2,
+    height: 200,
+    borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',
     borderBottomWidth: 0,
@@ -30,7 +31,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cardHeader: {
-    fontSize: 30,
+    fontSize: 50,
+  },
+  cardNumber:{
+    fontSize:20,
+  },
+  button: {
+    padding: 10,
+    backgroundColor: purple,
+    alignSelf: 'center',
+    borderRadius: 5,
+    margin: 20,
+  },
+  buttonText :{
+    color: white,
+    fontSize: 20,
   }
 })
 

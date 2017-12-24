@@ -1,17 +1,15 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, ScrollView } from 'react-native'
 import CardView from './CardView'
 
-const Decks = (props) => {
+export default class Decks extends Component {
+  render() {
   return (
-  <View style={{flex: 1}}>
+  <ScrollView style={{flex: 1}}>
     <CardView />
     <CardView />
     <CardView />
     <CardView />
-  </View>
-)
+  </ScrollView>
+)}
 }
-
-
-export default Decks;
