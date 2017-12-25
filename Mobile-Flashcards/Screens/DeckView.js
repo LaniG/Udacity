@@ -12,6 +12,7 @@ import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
 import Button from '../Components/Button'
 import DeckQuestions from './DeckQuestions'
+import DeckQuiz from './DeckQuiz'
 
 class DeckView extends React.Component {
 
@@ -37,7 +38,9 @@ const { params } = this.props.navigation.state;
           <Button buttonText='Add'
             onPress={() => navigate('DeckQuestions', { title: 'Add Card'} )}
           />
-          <Button buttonText='Start' />
+          <Button buttonText='Start'
+            onPress={() => navigate('DeckQuiz', { title: 'Deck Quiz'} )}
+          />
         </View>
       </View>
     )

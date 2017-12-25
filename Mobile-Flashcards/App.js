@@ -7,6 +7,7 @@ import Decks from './Screens/Decks'
 import DeckView from './Screens/DeckView'
 import DeckNew from './Screens/DeckNew'
 import DeckQuestions from './Screens/DeckQuestions'
+import DeckQuiz from './Screens/DeckQuiz'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { white, purple } from './Utils/Colors'
 
@@ -67,6 +68,9 @@ const MainScreen = StackNavigator({
   },
   DeckQuestions: {
     screen: DeckQuestions,
+  },
+  DeckQuiz:{
+    screen: DeckQuiz,
   },
   //TODO:add other screen here to add new deck section
 })
