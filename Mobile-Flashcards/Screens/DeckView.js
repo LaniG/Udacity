@@ -10,6 +10,7 @@ import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
+import Button from '../Components/Button'
 import { purple, white } from '../Utils/Colors'
 
 
@@ -30,14 +31,9 @@ const { params } = this.props.navigation.state;
           cards={params.cards} /*these are not pulling over...*/
         />
 
-        <View style={{flex: 1}}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Add</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Start</Text>
-          </TouchableOpacity>
+        <View style={styles.container}>
+          <Button buttonText='Add' />
+          <Button buttonText='Start' />
         </View>
       </View>
     )
@@ -45,16 +41,22 @@ const { params } = this.props.navigation.state;
 }
 
 const styles = StyleSheet.create({
+  container :{
+    flex: 1,
+    justifyContent: 'center'
+  },
   button: {
     padding: 10,
     backgroundColor: purple,
     alignSelf: 'center',
     borderRadius: 5,
+    width:120,
     margin: 20,
   },
   buttonText :{
     color: white,
     fontSize: 20,
+    alignSelf: 'center',
   },
 })
 
