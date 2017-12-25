@@ -5,7 +5,8 @@ import { blue } from './Utils/Colors'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import Decks from './Screens/Decks'
 import DeckView from './Screens/DeckView'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import DeckNew from './Screens/DeckNew'
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { white, purple } from './Utils/Colors'
 
 
@@ -22,9 +23,16 @@ const Tabs = TabNavigator({
     screen: Decks,
     navigatorOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({ tinColor }) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards-outline' size={30} color={tintColor} />
     },
   },
+  New: {
+    screen: DeckNew,
+    navigatorOptions: {
+      tabBarLabel: 'New',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-circle-outline' size={30} color={tintColor} />
+    }
+  }
   //TODO: add new screen here to add new deck section
 }, {
   navigationOptions: {
@@ -49,6 +57,9 @@ const Tabs = TabNavigator({
 const MainScreen = StackNavigator({
   Home: {
     screen: Tabs,
+  },
+  DeckNew: {
+    screen: DeckNew,
   },
   DeckView: {
     screen: DeckView,

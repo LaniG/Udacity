@@ -7,12 +7,10 @@ options to either start a quiz or add more questions
 */
 
 import React from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
 import Button from '../Components/Button'
-import { purple, white } from '../Utils/Colors'
-
 
 class DeckView extends React.Component {
 
@@ -45,19 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center'
   },
-  button: {
-    padding: 10,
-    backgroundColor: purple,
-    alignSelf: 'center',
-    borderRadius: 5,
-    width:120,
-    margin: 20,
-  },
-  buttonText :{
-    color: white,
-    fontSize: 20,
-    alignSelf: 'center',
-  },
 })
+
 
 export default DeckView;
