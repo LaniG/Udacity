@@ -3,7 +3,8 @@ import { View, StatusBar, Platform } from 'react-native'
 import { Constants } from 'expo'
 import { blue } from './Utils/Colors'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import Decks from './Components/Decks'
+import Decks from './Screens/Decks'
+import DeckView from './Screens/DeckView'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { white, purple } from './Utils/Colors'
 
@@ -48,6 +49,9 @@ const Tabs = TabNavigator({
 const MainScreen = StackNavigator({
   Home: {
     screen: Tabs,
+  },
+  DeckView: {
+    screen: DeckView,
   },
   //TODO:add other screen here to add new deck section
 })

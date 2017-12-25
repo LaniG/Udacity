@@ -1,13 +1,20 @@
+/*PURPOSE: this component is responsible for rendering
+most of the cards used in the App
+
+*/
+
 import React from 'react'
-import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Platform } from 'react-native'
 import { white, purple } from '../Utils/Colors'
 
-const CardView = () => {
+
+const CardView = (props) => {
+
   return(
-    <TouchableOpacity style={styles.cardItem}>
-      <Text style={styles.cardHeader}> React </Text>
-      <Text style={styles.cardNumber}>10 Cards</Text>
-    </TouchableOpacity>
+    <View style={styles.cardItem}>
+      <Text style={styles.cardHeader}>{props.name} </Text>
+      <Text style={styles.cardNumber}>{props.cards} Cards</Text>
+    </View>
   )
 }
 
@@ -31,22 +38,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   cardHeader: {
-    fontSize: 50,
+    fontSize: 40,
   },
   cardNumber:{
     fontSize:20,
   },
-  button: {
-    padding: 10,
-    backgroundColor: purple,
-    alignSelf: 'center',
-    borderRadius: 5,
-    margin: 20,
-  },
-  buttonText :{
-    color: white,
-    fontSize: 20,
-  }
 })
 
 export default CardView;
