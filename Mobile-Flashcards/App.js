@@ -6,6 +6,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import Decks from './Screens/Decks'
 import DeckView from './Screens/DeckView'
 import DeckNew from './Screens/DeckNew'
+import DeckQuestions from './Screens/DeckQuestions'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { white, purple } from './Utils/Colors'
 
@@ -63,6 +64,9 @@ const MainScreen = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
+  },
+  DeckQuestions: {
+    screen: DeckQuestions,
   },
   //TODO:add other screen here to add new deck section
 })

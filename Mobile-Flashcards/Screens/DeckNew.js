@@ -3,8 +3,9 @@ the questions and answers for the App. Not sure If a new screen is
 needed for the Q&A.
 
 TODO:
--implement a state variable
-- add a controlled form
+partial -implement a state variable
+partial - add a controlled form
+-implement redux
 
 */
 
@@ -13,18 +14,20 @@ import { Text, View, StyleSheet, TextInput } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
+import DeckQuestions from './DeckQuestions'
 
 export default class DeckNew extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
+state = {
       title: ''
     }
-  }
 
 
   render() {
+
+    const { navigate } = this.props.navigation;
+
+
     return(
       <View style={{flex: 1}}>
         <View style={styles.TopSection}>
@@ -32,10 +35,13 @@ export default class DeckNew extends React.Component {
           <TextInput
             style={styles.TextInput}
             placeholder="Title here"
-            onChangeText={(title) => this.setState({title})}
+            onChangeText={(title) => this.setState({title}) }
             />
         </View>
-        <Button buttonText='Next' />
+        <Button
+          buttonText='Next'
+            onPress={() => navigate('DeckQuestions', { title: 'Add Card'} )}
+          />
       </View>
     )
   }
@@ -70,6 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     height: 60,
     width: 300,
-    textAlign: 'center'
+    textAlign: 'center',
   }
 })

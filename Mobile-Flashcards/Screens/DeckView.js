@@ -11,6 +11,7 @@ import { View, StyleSheet } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
 import Button from '../Components/Button'
+import DeckQuestions from './DeckQuestions'
 
 class DeckView extends React.Component {
 
@@ -20,6 +21,9 @@ static navigationOptions = ({ navigation }) => ({
 /*this is the text shown at the top of this screen, specific to each card
 */
 render() {
+
+const { navigate } = this.props.navigation;
+
 const { params } = this.props.navigation.state;
 
     return (
@@ -30,7 +34,9 @@ const { params } = this.props.navigation.state;
         />
 
         <View style={styles.container}>
-          <Button buttonText='Add' />
+          <Button buttonText='Add'
+            onPress={() => navigate('DeckQuestions', { title: 'Add Card'} )}
+          />
           <Button buttonText='Start' />
         </View>
       </View>
