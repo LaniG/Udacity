@@ -10,6 +10,9 @@ import DeckQuestions from './Screens/DeckQuestions'
 import DeckQuiz from './Screens/DeckQuiz'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { white, purple } from './Utils/Colors'
+import { createStore} from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -35,7 +38,7 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-circle-outline' size={30} color={tintColor} />
     }
   }
-  //TODO: add new screen here to add new deck section
+
 }, {
   navigationOptions: {
     header: null
@@ -78,10 +81,12 @@ const MainScreen = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
-        <MainScreen />
-      </View>
-    );
+      <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
+          <MainScreen />
+        </View>
+      </Provider>
+    )
   }
 }

@@ -15,17 +15,24 @@ import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 import DeckQuestions from './DeckQuestions'
+import { connect } from 'react-redux'
+import { addTitle } from '../actions'
 
-export default class DeckNew extends React.Component {
+class DeckNew extends React.Component {
 
-state = {
-      title: ''
-    }
-
+  state: {
+    title: '',
+  }
 
   render() {
 
     const { navigate } = this.props.navigation;
+
+    const saveTitle = () => {
+      this.props.dispatch(addTitle({
+         title: this.state.title
+      }))
+    }
 
 
     return(
@@ -40,7 +47,12 @@ state = {
         </View>
         <Button
           buttonText='Next'
-            onPress={() => navigate('DeckQuestions', { title: `${this.state.title}`} )}
+            onPress={() => {
+              navigate('DeckQuestions', { title: `${this.state.title}` } )
+              saveTitle()
+              alert(this.props.state);
+            }
+            }
           />
       </KeyboardAvoidingView>
     )
@@ -79,3 +91,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 })
+
+
+export default connect()(DeckNew)
