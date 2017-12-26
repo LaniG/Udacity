@@ -42,7 +42,7 @@ class DeckNew extends React.Component {
             <TextInput
               style={styles.TextInput}
               placeholder="Title here"
-              onChangeText={(title) => this.setState({title}) }
+              onChangeText={(title) => this.setState({title: title}) }
               />
         </View>
         <Button
@@ -50,7 +50,7 @@ class DeckNew extends React.Component {
             onPress={() => {
               navigate('DeckQuestions', { title: `${this.state.title}` } )
               saveTitle()
-              alert(this.props.state);
+/*TODO: implement mapStateToProps to possible remove this function altogether*/
             }
             }
           />
