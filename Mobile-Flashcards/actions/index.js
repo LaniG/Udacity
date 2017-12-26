@@ -16,12 +16,15 @@ export function addTitle (title) {
   }
 }
 
-export function addQuestions (question, answer) {
+export function addQuestions (title, question, answer) {
   return {
     type: ADD_QUESTIONS,
-    questions: {
-      question,
-      answer,
-    }
+    title,
+    questions: [
+      {
+        question,
+        answer
+      }
+    ],
   }
 }
