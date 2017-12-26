@@ -40,7 +40,7 @@ state = {
         </View>
         <Button
           buttonText='Next'
-            onPress={() => navigate('DeckQuestions', { title: 'Add Card'} )}
+            onPress={() => navigate('DeckQuestions', { title: `${this.state.title}`} )}
           />
       </View>
     )

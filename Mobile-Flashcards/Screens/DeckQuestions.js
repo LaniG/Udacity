@@ -14,7 +14,7 @@ import { white } from '../Utils/Colors'
 export default class DeckQuestions extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.title} Questions`,
+    title: `Add Questions to ${navigation.state.params.title}`,
   })
   /*this is the text shown at the top of this screen, specific to each card
   */
