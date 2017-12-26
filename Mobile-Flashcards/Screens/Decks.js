@@ -1,7 +1,9 @@
-/*TODO:make a link on each card rendered to go to the DeckView screen,
-passing the name and card number props
+/*PURPOSE: this component is the main view of the mobile FLASHCARDS app. It is responsible for displaying all the titles
+and associated cards (aka. questions) of each title. The titles are also clickable which will link to the DeckView.js component
 
-PURPOSE: this component will display all Decks in the App
+TODO: After I create the list of Decks to be added to the Store,
+I need to return here to:
+- used mapStateToProps to access each deck (aka. title) to be displayed in the ScrollView.
 */
 
 import React, { Component } from 'react'

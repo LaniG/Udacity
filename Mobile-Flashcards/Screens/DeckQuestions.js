@@ -1,8 +1,10 @@
 /*PURPOSE: this component is responsible for taking
-the questions and answers for the App.
+the questions and answers for each Deck title and updating the Store
 
-TODO: implement redux to manage this Q&A state as well as the Titlte
-state in DeckNew.js
+TODO: After I create the list of Decks to be added to the Store,
+I need to return here to:
+- accept a deck title and add new questions and answers to that title in the store.
+- mapStateToProps would be needed.
 */
 
 import React from 'react'

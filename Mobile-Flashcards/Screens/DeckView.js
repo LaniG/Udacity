@@ -1,9 +1,8 @@
-/*TODO: look out for the name and card number props coming in from DeckView.
-Also, implement stack Navigation here on the buttons to go
-to other relevant screens
+/*PURPOSE: this component is responsible for showing a card title with options to add new questions or start a quiz
 
-PURPOSE: this component will show the individual Deck with
-options to either start a quiz or add more questions
+TODO: After I create the list of Decks to be added to the Store,
+I need to return here to:
+- used mapStateToProps to access the title in the store and the number of questions (aka. cards) associated with it.
 */
 
 import React from 'react'

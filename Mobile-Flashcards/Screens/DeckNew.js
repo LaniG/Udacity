@@ -3,9 +3,10 @@ the questions and answers for the App. Not sure If a new screen is
 needed for the Q&A.
 
 TODO:
-partial -implement a state variable
-partial - add a controlled form
--implement redux
+After I create the list of Decks to be added to the Store,
+I need to return here to:
+- add the new title to the Store
+- send the title over to the DeckQuestions.js file to be used as a key to add questions
 
 */
 
@@ -92,5 +93,11 @@ const styles = StyleSheet.create({
   }
 })
 
+function mapStateToProps(state) {
+  return {
 
-export default connect()(DeckNew)
+  }
+}
+
+
+export default connect(mapStateToProps)(DeckNew)

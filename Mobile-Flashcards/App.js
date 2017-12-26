@@ -22,6 +22,7 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
     </View>
   )
 }
+/*This UdaciStatusBar function is responsible for displaying a custom status bar above our App */
 
 const Tabs = TabNavigator({
   Decks: {
@@ -58,6 +59,7 @@ const Tabs = TabNavigator({
     }
   }
 })
+/*This TABS function is responsible for creating the Tabbed laout of the App which essentially has 2 views: Decks.js and DeckNew.js */
 
 const MainScreen = StackNavigator({
   Home: {
@@ -77,6 +79,8 @@ const MainScreen = StackNavigator({
   },
   //TODO:add other screen here to add new deck section
 })
+/*This MainScreen function is responsible for creating a StackNavigator that will allow users to access different screens in the App
+with an arrow button to go back to the previous screen they were on. This function has a record of all screens in our App and which File they will display*/
 
 export default class App extends React.Component {
   render() {
@@ -87,6 +91,7 @@ export default class App extends React.Component {
           <MainScreen />
         </View>
       </Provider>
+      /*My Mobile FLASHCARDS app is using redux! */
     )
   }
 }
