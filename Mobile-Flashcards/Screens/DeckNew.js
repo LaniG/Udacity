@@ -10,7 +10,7 @@ partial - add a controlled form
 */
 
 import React from 'react'
-import { Text, View, StyleSheet, TextInput } from 'react-native'
+import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
@@ -29,20 +29,20 @@ state = {
 
 
     return(
-      <View style={{flex: 1}}>
+      <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>
         <View style={styles.TopSection}>
           <Text style={styles.TextStyle}> What is the Title for this new Deck? </Text>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Title here"
-            onChangeText={(title) => this.setState({title}) }
-            />
+            <TextInput
+              style={styles.TextInput}
+              placeholder="Title here"
+              onChangeText={(title) => this.setState({title}) }
+              />
         </View>
         <Button
           buttonText='Next'
             onPress={() => navigate('DeckQuestions', { title: `${this.state.title}`} )}
           />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

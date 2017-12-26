@@ -6,7 +6,7 @@ state in DeckNew.js
 */
 
 import React from 'react'
-import { Text, View, StyleSheet, TextInput } from 'react-native'
+import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
@@ -33,7 +33,7 @@ export default class DeckQuestions extends React.Component {
     const { navigate } = this.props.navigation;
 
     return(
-      <View style={{flex: 1}}>
+      <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>
         <View style={styles.TopSection}>
           <Text style={styles.TextStyle}> Question </Text>
           <TextInput
@@ -53,7 +53,7 @@ export default class DeckQuestions extends React.Component {
         <Button buttonText='Done'
           onPress={() => navigate('Home')}
         />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
