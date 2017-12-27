@@ -3,6 +3,7 @@ import { RECEIVE_DECKS, ADD_TITLE, ADD_QUESTIONS } from '../actions'
 const initialAppState = {
   React: {
   title: 'React',
+  count: 2,
   questions: [
     {
       question: 'What is React?',
@@ -16,6 +17,7 @@ const initialAppState = {
   },
   Redux: {
     title: 'Redux',
+    count: 1,
     questions: [
       {
         question: 'What is Redux?',
@@ -25,6 +27,7 @@ const initialAppState = {
   },
   ReactNative: {
     title: 'React-Native',
+    count: 1,
     questions: [
       {
         question: 'Why do we use React Native?',
@@ -34,6 +37,7 @@ const initialAppState = {
   },
   Flexbox: {
     title: 'Flexbox',
+    count: 1,
     questions: [
       {
         question: 'How do we position elements on the main axis?',
@@ -48,8 +52,7 @@ function decks (state = initialAppState, action) {
   switch (action.type) {
     case RECEIVE_DECKS :
       return {
-        ...state,
-        ...action.decks
+        ...state
       }
     case ADD_TITLE :
       return {
@@ -60,6 +63,7 @@ function decks (state = initialAppState, action) {
       return {
         ...state,
         ...state[action.title],
+        ...[count] + 1,
         [questions]: action.questions,
       }
     default :

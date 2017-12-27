@@ -10,14 +10,17 @@ import React, { Component } from 'react'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import CardView from '../Components/CardView'
 import DeckView from './DeckView'
+import { connect } from 'react-redux'
 
-export default class Decks extends Component {
+class Decks extends Component {
+
   render() {
 
     const { navigate } = this.props.navigation;
 
     return (
       <ScrollView style={{flex: 1}}>
+
         <TouchableOpacity onPress={() => navigate('DeckView', { title: 'React', name: 'React', cards: 25 })}>
           <CardView name='React' cards={25} />
         </TouchableOpacity>
@@ -38,3 +41,13 @@ export default class Decks extends Component {
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    decks: state
+  };
+}
+
+
+export default connect(mapStateToProps)(Decks)

@@ -2,10 +2,9 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_TITLE = 'ADD_TITLE'
 export const ADD_QUESTIONS = 'ADD_QUESTIONS'
 
-export function receiveCards (decks) {
+export function receiveCards () {
   return{
     type: RECEIVE_DECKS,
-    decks,
   }
 }
 
