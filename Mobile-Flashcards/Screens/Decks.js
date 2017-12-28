@@ -14,16 +14,29 @@ import { connect } from 'react-redux'
 
 class Decks extends Component {
 
-  state = {
-    cardDecks: {},
-  }
 
   render() {
+
+    const displayCard = () => {
+      for (const item in decks){
+        if (decks.hasOwnProperty(item)) {
+          const title = item.titles
+          const count = item.count
+          return (
+            <TouchableOpacity onPress={() => navigate('DeckView', { title: {title}, name: {title}, cards: {count} })}>
+              <CardView name={title} cards={count} />
+            </TouchableOpacity>
+          )
+        }
+      }
+    }
 
     const { navigate } = this.props.navigation;
 
     return (
       <ScrollView style={{flex: 1}}>
+
+        this.displayCards()
 
         <TouchableOpacity onPress={() => navigate('DeckView', { title: 'React', name: 'React', cards: 25 })}>
           <CardView name='React' cards={25} />
