@@ -18,10 +18,6 @@ class Decks extends Component {
     cardDecks: {},
   }
 
-  const importState = (theDecks) => {
-    this.setState(cardDecks: theDecks);
-  }
-
   render() {
 
     const { navigate } = this.props.navigation;
@@ -53,8 +49,8 @@ class Decks extends Component {
 
 function mapStateToProps({decks}) {
   return {
-    importState(decks)
-  };
+
+  }
 }
 
 
