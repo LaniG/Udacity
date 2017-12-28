@@ -16,7 +16,7 @@ class Decks extends Component {
 
 
   render() {
-
+/*
     const displayCard = () => {
       for (const item in decks){
         if (decks.hasOwnProperty(item)) {
@@ -30,13 +30,12 @@ class Decks extends Component {
         }
       }
     }
+    */
 
     const { navigate } = this.props.navigation;
 
     return (
       <ScrollView style={{flex: 1}}>
-
-        this.displayCards()
 
         <TouchableOpacity onPress={() => navigate('DeckView', { title: 'React', name: 'React', cards: 25 })}>
           <CardView name='React' cards={25} />
