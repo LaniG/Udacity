@@ -14,6 +14,14 @@ import { connect } from 'react-redux'
 
 class Decks extends Component {
 
+  state = {
+    cardDecks: {},
+  }
+
+  const importState = (theDecks) => {
+    this.setState(cardDecks: theDecks);
+  }
+
   render() {
 
     const { navigate } = this.props.navigation;
@@ -43,9 +51,9 @@ class Decks extends Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({decks}) {
   return {
-    decks: state
+    importState(decks)
   };
 }
 
