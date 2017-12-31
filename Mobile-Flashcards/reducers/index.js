@@ -4,22 +4,22 @@ import { initialAppState } from '../Utils/Helpers'
 function decks(state = initialAppState, action) {
   switch (action.type) {
     case RECEIVE_DECKS: {
-      return action.decks
-      }
-    case ADD_TITLE:
-      const { title } = action;
       return {
         ...state,
-        [title]: {
-          title,
-          questions: []
-        }
+        ...action.decks
+      }
+    }
+    case ADD_TITLE:
+      return {
+        ...state,
+        ...action.title
       }
     case ADD_QUESTIONS:
-      const copyOfState = {...state}
-      copyOfState[action.title].questions.push(action.card);
-      {
-        return copyOfState;
+      const {title, questions, question, answer} = action.params;
+      const newQuestion = JSON.parse(JSON.stringify(questions)).concat([ { question, answer } ]);
+      return {
+        ...state,
+        [title]: {...state[title], questions: newQuestion},
       }
     default:
       return state

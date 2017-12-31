@@ -8,6 +8,7 @@ Error messgae: Actions must be plain objects. Use custom middleware for async ac
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import { receiveDecks } from '../actions'
+import { getDecks } from '../Utils/Helpers'
 import CardView from '../Components/CardView'
 import DeckView from './DeckView'
 import { connect } from 'react-redux'
@@ -15,17 +16,23 @@ import { connect } from 'react-redux'
 class Decks extends Component {
 
   componentDidMount() {
-    this.props.getDecks();
+    getDecks()
+    .then(decks => this.props.dispatch(receiveDecks(decks)))
+  }
+
+  returnDeckData=() => {
+    return Object.values(this.props.decks)
   }
 
   render() {
 
     const { navigate } = this.props.navigation;
+    const getDeckData = this.returnDeckData()
 
     return (
       <FlatList
           style={{flex: 1}}
-          data={this.props.decks}
+          data={getDeckData}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => (
             <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: item.questions.length })}>
@@ -38,19 +45,11 @@ class Decks extends Component {
 }
 
 
-function mapStateToProps(data) {
+function mapStateToProps(state) {
   return {
-    decks: Object.keys(data).reduce((decks, id) => {
-      return decks.concat(data[id])
-    }, [])
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getDecks: () => dispatch(receiveDecks())
+    decks: state,
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Decks);
+export default connect(mapStateToProps)(Decks);
