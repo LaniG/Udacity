@@ -24,10 +24,21 @@ class Decks extends Component {
     return Object.values(this.props.decks)
   }
 
+
+
   render() {
 
     const { navigate } = this.props.navigation;
     const getDeckData = this.returnDeckData()
+
+    cardCount=(num) => {
+      if(num > 1 ){
+        return `${num} Cards`
+      }
+      else{
+        return `${num} Card`
+      }
+    }
 
     return (
       <FlatList
@@ -35,8 +46,8 @@ class Decks extends Component {
           data={getDeckData}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: item.questions.length })}>
-              <CardView name={item.title} cards={item.questions.length} />
+            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.questions.length) })}>
+              <CardView name={item.title} cards={cardCount(item.questions.length)} />
             </TouchableOpacity>
           )}
       />

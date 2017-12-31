@@ -13,7 +13,7 @@ const CardView = (props) => {
   return(
     <View style={styles.cardItem}>
       <Text style={styles.cardHeader}>{props.name} </Text>
-      <Text style={styles.cardNumber}>{props.cards} Cards</Text>
+      <Text style={styles.cardNumber}>{props.cards}</Text>
     </View>
   )
 }
