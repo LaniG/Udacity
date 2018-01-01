@@ -23,10 +23,8 @@ export default class DeckQuestions extends React.Component {
 
   componentWillMount(){
     this.setState({
-      questions: [{
         question:'',
         answer:''
-      },]
   })}
 
   render() {
@@ -35,25 +33,25 @@ export default class DeckQuestions extends React.Component {
 
     const submitQuestion = () => {
       const title = this.props.navigation.state.params.title;
-      const questions = this.state;
-      const question = this.state.question;
-      const answer = this.state.answer;
-      const params = {title, questions, question, answer};
-      const card = {questions, question, answer};
+      const questions = [];
+      const { question, answer } = this.state;
+      const params = { title, questions, question, answer };
+      const card = { questions, question, answer };
 
-      if (question === ''){
-        Alert.alert('Going too fast!','Please remember to add a question!');
+    if (question === ''){
+        Alert.alert('Going too fast!','Please remember to add a question');
         return;
       }
       if (answer === ''){
-        Alert.alert('Slow down!','Please remember to add the answer!');
+        Alert.alert('Slow down!','Please remember to add the answer');
         return;
       }
 
-    /*  this.props.dispatch(addTitle({title}));
-      saveDeckTitle({title});
-      this.props.dispatch(addQuestions({params}));
-      addCardToDeck({title, card}); */
+
+      this.props.dispatch(addTitle(title));
+      saveDeckTitle(title);
+      this.props.dispatch(addQuestions(params));
+      addCardToDeck(title, card);
 
       Alert.alert('Great News',`Your new question was added to the Deck: ${title}`,
         [
@@ -68,15 +66,19 @@ export default class DeckQuestions extends React.Component {
           <Text style={styles.TextStyle}> Question </Text>
           <TextInput
             style={styles.TextInput}
+            value={this.state.question} /*It is necessary to get the value of question directly from this.state*/
             placeholder="Question here"
-            onChangeText={(question) => this.setState({question})}
+            onChangeText={question => this.setState({question})}
+            /*the onChange prop passed to setState was causing my program to crash
+            NB: when sending onChange props, omit the brackets (question) as I had it before */
             />
 
             <Text style={styles.TextStyle}> Answer </Text>
             <TextInput
               style={styles.TextInput}
+              value={this.state.answer}
               placeholder="Answer here"
-              onChangeText={(answer) => this.setState({answer})}
+              onChangeText={answer => this.setState({answer})}
               />
         </View>
         <Button buttonText='Done'
