@@ -8,12 +8,13 @@ run first before the confirmation alert.
 import React from 'react'
 import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+import { connect } from 'react-redux'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 import { addTitle, addQuestions } from '../actions'
 import { saveDeckTitle, addCardToDeck } from '../Utils/Helpers'
 
-export default class DeckQuestions extends React.Component {
+class DeckQuestions extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: `Add Questions to ${navigation.state.params.title}`,
@@ -123,3 +124,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+
+function mapStateToProps(state){
+  return {
+    decks: state,
+  }
+}
+
+export default connect(mapStateToProps)(DeckQuestions)
