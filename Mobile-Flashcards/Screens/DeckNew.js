@@ -11,30 +11,56 @@ I need to return here to:
 */
 
 import React from 'react'
-import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 import DeckQuestions from './DeckQuestions'
 import { connect } from 'react-redux'
 import { addTitle } from '../actions'
+import { saveDeckTitle } from '../Utils/Helpers'
 
 class DeckNew extends React.Component {
 
-  state: {
-    title: '',
-  }
+componentWillMount() {
+  this.setState({
+    newDeckTitle: ''
+  })
+}
 
   render() {
 
     const { navigate } = this.props.navigation;
 
     const saveTitle = () => {
-      this.props.dispatch(addTitle({
-         title: this.state.title
-      }))
-    }
 
+      const {decks} = this.props;
+      const nDeckTitle = this.state.newDeckTitle;
+
+      if (!nDeckTitle) {
+        Alert.alert('Title Required','Please Enter a New Deck Title to Continue');
+      } /*test to see if the title field is blank*/
+      else{
+        if(decks[nDeckTitle]){
+          Alert.alert('Notice','This Deck Title already exists!');
+        }/*test to see if the deck already exists*/
+        else{
+
+        /*  const addNewDeck = {[nDeckTitle]:{title: nDeckTitle, questions: [question:'',answer:'']}}
+          this.props.dispatch(addTitle({title: this.state.title}));
+          saveDeckTitle(addNewDeck);
+        */
+
+          Alert.alert(
+            'Awesome!', 'Your New Deck Title is Okay',
+            [
+              {text: 'OK', onPress: () => navigate('DeckQuestions', { title: `${this.state.newDeckTitle}` } )},
+
+            ],
+          )/*end of the confirmation alert*/
+        }/*end of second else which adds the title to storage and state*/
+      }
+    }
 
     return(
       <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>
@@ -43,17 +69,14 @@ class DeckNew extends React.Component {
             <TextInput
               style={styles.TextInput}
               placeholder="Title here"
-              onChangeText={(title) => this.setState({title: title}) }
+              onChangeText={(title) => this.setState({newDeckTitle: title}) }
               />
         </View>
         <Button
-          buttonText='Next'
+          buttonText='Add Q&A'
             onPress={() => {
-              navigate('DeckQuestions', { title: `${this.state.title}` } )
               saveTitle()
-/*TODO: implement mapStateToProps to possible remove this function altogether*/
-            }
-            }
+            }}
           />
       </KeyboardAvoidingView>
     )
@@ -90,12 +113,12 @@ const styles = StyleSheet.create({
     height: 60,
     width: 300,
     textAlign: 'center',
-  }
+  },
 })
 
 function mapStateToProps(state) {
   return {
-
+    decks: state,
   }
 }
 

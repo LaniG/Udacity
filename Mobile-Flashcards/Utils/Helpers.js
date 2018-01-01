@@ -68,14 +68,9 @@ export const getDeck = (id) => {
       })
 }
 
-export const saveDeckTitle = (title) => {
-    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
-        [title]: {
-            title,
-            questions: []
-        }
-    }))
-} //TODO: revisit formatting of the reducer and database shape
+export const saveDeckTitle = (deck) => {
+    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
+}
 
 export const addCardToDeck = (title, card) => {
     return AsyncStorage.getItem(STORAGE_KEY)
