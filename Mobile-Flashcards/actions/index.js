@@ -16,7 +16,7 @@ export function addTitle(title) {
   }
 }
 
-export function addQuestions(title, card){
+export function addQuestions(params){
   return {
     type: ADD_QUESTIONS,
     params,

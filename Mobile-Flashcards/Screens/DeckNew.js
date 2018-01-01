@@ -17,8 +17,8 @@ import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 import DeckQuestions from './DeckQuestions'
 import { connect } from 'react-redux'
-import { addTitle } from '../actions'
-import { saveDeckTitle } from '../Utils/Helpers'
+/*import { addTitle } from '../actions'
+import { saveDeckTitle } from '../Utils/Helpers'*/
 
 class DeckNew extends React.Component {
 
@@ -52,7 +52,7 @@ componentWillMount() {
         */
 
           Alert.alert(
-            'Awesome!', 'Your New Deck Title is Okay',
+            'Awesome!', 'Your New Deck Title is okay. Click OK to add a question.',
             [
               {text: 'OK', onPress: () => navigate('DeckQuestions', { title: `${this.state.newDeckTitle}` } )},
 

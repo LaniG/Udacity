@@ -1,17 +1,17 @@
 /*PURPOSE: this component is responsible for taking
 the questions and answers for each Deck title and updating the Store
 
-TODO: After I create the list of Decks to be added to the Store,
-I need to return here to:
-- accept a deck title and add new questions and answers to that title in the store.
-- mapStateToProps would be needed.
+TODO: lines 46-53: these IF statements are being overlooked. These need to
+run first before the confirmation alert.
 */
 
 import React from 'react'
-import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
+import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
+import { addTitle, addQuestions } from '../actions'
+import { saveDeckTitle, addCardToDeck } from '../Utils/Helpers'
 
 export default class DeckQuestions extends React.Component {
 
@@ -21,18 +21,46 @@ export default class DeckQuestions extends React.Component {
   /*this is the text shown at the top of this screen, specific to each card
   */
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      question: '',
-      answer: ''
-    }
-  }
-
+  componentWillMount(){
+    this.setState({
+      questions: [{
+        question:'',
+        answer:''
+      },]
+  })}
 
   render() {
 
     const { navigate } = this.props.navigation;
+
+    const submitQuestion = () => {
+      const title = this.props.navigation.state.params.title;
+      const questions = this.state;
+      const question = this.state.question;
+      const answer = this.state.answer;
+      const params = {title, questions, question, answer};
+      const card = {questions, question, answer};
+
+      if (question === ''){
+        Alert.alert('Going too fast!','Please remember to add a question!');
+        return;
+      }
+      if (answer === ''){
+        Alert.alert('Slow down!','Please remember to add the answer!');
+        return;
+      }
+
+    /*  this.props.dispatch(addTitle({title}));
+      saveDeckTitle({title});
+      this.props.dispatch(addQuestions({params}));
+      addCardToDeck({title, card}); */
+
+      Alert.alert('Great News',`Your new question was added to the Deck: ${title}`,
+        [
+          {text: 'OK', onPress: () => navigate('Home')}
+        ])
+
+    }
 
     return(
       <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>
@@ -51,9 +79,10 @@ export default class DeckQuestions extends React.Component {
               onChangeText={(answer) => this.setState({answer})}
               />
         </View>
-        <Button buttonText='More' />
         <Button buttonText='Done'
-          onPress={() => navigate('Home')}
+        onPress={() => {
+          submitQuestion()
+        }}
         />
       </KeyboardAvoidingView>
     )
