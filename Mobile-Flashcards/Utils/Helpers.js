@@ -54,8 +54,10 @@ export const getDecks = () => {
           if(result == null) {
               AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initialAppState));
               return initialAppState
+              console.log('Initial state rendered')
           } else {
               return JSON.parse(result)
+              console.log('Locally saved data returned');
           }
       })
 }
@@ -70,6 +72,7 @@ export const getDeck = (id) => {
 
 export const saveDeckTitle = (deck) => {
     return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
+    console.log('New Title saved');
 }
 
 export const addCardToDeck = (title, card) => {
@@ -90,6 +93,7 @@ export const addCardToDeck = (title, card) => {
                 }
             }));
         })
+        console.log('New questions saved to the deck');
 }
 
 export function clearLocalNotification() {
@@ -110,7 +114,7 @@ export const setLocalNotification = () => {
                             let tomorrow = new Date();
                             tomorrow.setDate(tomorrow.getDate() + 1);
                             tomorrow.setHours(19);
-                            tomorrow.setMinutes(0);
+                            tomorrow.setMinutes(30);
 
                             Notifications.scheduleLocalNotificationAsync(
                                 createNotification(), {

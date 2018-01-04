@@ -28,38 +28,39 @@ class DeckQuestions extends React.Component {
         answer:''
   })}
 
+  submitQuestion = () => {
+    const { navigate } = this.props.navigation;
+    const title = this.props.navigation.state.params.title;
+    const questions = [];
+    const { question, answer } = this.state;
+    const params = { title, questions, question, answer };
+    const card = { questions, question, answer };
+
+  if (question === ''){
+      Alert.alert('Going too fast!','Please remember to add a question');
+      return;
+    }
+    if (answer === ''){
+      Alert.alert('Slow down!','Please remember to add the answer');
+      return;
+    }
+
+
+    this.props.dispatch(addTitle(title));
+    saveDeckTitle(title);
+    this.props.dispatch(addQuestions(params));
+    addCardToDeck(title, card);
+
+
+    Alert.alert('Great News',`Your new question was added to the Deck: ${title}`,
+      [
+        {text: 'OK', onPress: () => navigate('Home')}
+      ])
+
+  }
+
   render() {
 
-    const { navigate } = this.props.navigation;
-
-    const submitQuestion = () => {
-      const title = this.props.navigation.state.params.title;
-      const questions = [];
-      const { question, answer } = this.state;
-      const params = { title, questions, question, answer };
-      const card = { questions, question, answer };
-
-    if (question === ''){
-        Alert.alert('Going too fast!','Please remember to add a question');
-        return;
-      }
-      if (answer === ''){
-        Alert.alert('Slow down!','Please remember to add the answer');
-        return;
-      }
-
-
-      this.props.dispatch(addTitle(title));
-      saveDeckTitle(title);
-      this.props.dispatch(addQuestions(params));
-      addCardToDeck(title, card);
-
-      Alert.alert('Great News',`Your new question was added to the Deck: ${title}`,
-        [
-          {text: 'OK', onPress: () => navigate('Home')}
-        ])
-
-    }
 
     return(
       <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>
@@ -84,7 +85,7 @@ class DeckQuestions extends React.Component {
         </View>
         <Button buttonText='Done'
         onPress={() => {
-          submitQuestion()
+          this.submitQuestion()
         }}
         />
       </KeyboardAvoidingView>

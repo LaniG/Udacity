@@ -23,7 +23,6 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 /*This UdaciStatusBar function is responsible for displaying a custom status bar above our App */
-
 const Tabs = TabNavigator({
   Decks: {
     screen: Decks,

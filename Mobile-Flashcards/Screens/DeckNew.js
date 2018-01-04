@@ -46,11 +46,6 @@ componentWillMount() {
         }/*test to see if the deck already exists*/
         else{
 
-        /*  const addNewDeck = {[nDeckTitle]:{title: nDeckTitle, questions: [question:'',answer:'']}}
-          this.props.dispatch(addTitle({title: this.state.title}));
-          saveDeckTitle(addNewDeck);
-        */
-
           Alert.alert(
             'Awesome!', 'Your New Deck Title is okay. Click OK to add a question.',
             [
