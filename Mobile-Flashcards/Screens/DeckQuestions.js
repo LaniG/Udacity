@@ -30,10 +30,11 @@ class DeckQuestions extends React.Component {
 
   submitQuestion = () => {
     const { navigate } = this.props.navigation;
-    const title = this.props.navigation.state.params.title;
+    const deckTitle = this.props.navigation.state.params.title;
+    const newTitle = {title: deckTitle, questions: []};
     const questions = [];
     const { question, answer } = this.state;
-    const params = { title, questions, question, answer };
+    const params = { deckTitle, questions, question, answer };
     const card = { questions, question, answer };
 
   if (question === ''){
@@ -46,13 +47,13 @@ class DeckQuestions extends React.Component {
     }
 
 
-    this.props.dispatch(addTitle(title));
-    saveDeckTitle(title);
+    this.props.dispatch(addTitle(newTitle));
+    saveDeckTitle(newTitle);
     this.props.dispatch(addQuestions(params));
-    addCardToDeck(title, card);
+    addCardToDeck(newTitle, card);
 
 
-    Alert.alert('Great News',`Your new question was added to the Deck: ${title}`,
+    Alert.alert('Great News',`Your new question was added to the Deck: ${deckTitle}`,
       [
         {text: 'OK', onPress: () => navigate('Home')}
       ])
