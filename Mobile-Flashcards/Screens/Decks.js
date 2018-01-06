@@ -31,12 +31,17 @@ class Decks extends Component {
     const { navigate } = this.props.navigation;
     const getDeckData = this.returnDeckData()
 
-    cardCount=(num) => {
-      if(num > 1 ){
-        return `${num} Cards`
-      }
+    cardCount=(itemQuestions) => {
+      if (typeof itemQuestions[0] !== undefined || itemQuestions[0] !== null){
+
+          if(itemQuestions.length > 1 ){
+            return `${itemQuestions.length} Cards`
+          }
+          else if(itemQuestions.length === 1){
+            return `${itemQuestions.length} Card`
+          }
       else{
-        return `${num} Card`
+        return '0 Cards';
       }
     }
 
@@ -46,8 +51,8 @@ class Decks extends Component {
           data={getDeckData}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.questions.length) })}>
-              <CardView name={item.title} cards={cardCount(item.questions.length)} />
+            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.questions) })}>
+              <CardView name={item.title} cards={cardCount(item.questions)} />
             </TouchableOpacity>
           )}
       />

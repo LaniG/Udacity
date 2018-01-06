@@ -1,8 +1,9 @@
 /*PURPOSE: this component is responsible for taking
 the questions and answers for each Deck title and updating the Store
 
-TODO: lines 46-53: these IF statements are being overlooked. These need to
-run first before the confirmation alert.
+TODO: The title addition works now, however the questions.length function implemented
+earlier to count the number of cards is breaking the code.
+We need to implement this count feature
 */
 
 import React from 'react'
