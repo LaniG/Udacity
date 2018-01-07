@@ -7,6 +7,7 @@ const NOTIFICATION_KEY = 'FLASHCARDS:NOTIFICATION_KEY'
 export const initialAppState = {
   React: {
   title: 'React',
+  count: 2,
   questions: [
     {
       question: 'What is React?',
@@ -15,43 +16,46 @@ export const initialAppState = {
     {
       question: 'Where do you make Ajax requests in React?',
       answer: 'The componentDidMount lifecycle event'
-    }
+    },
   ]
   },
   Redux: {
     title: 'Redux',
+    count: 1,
     questions: [
       {
         question: 'What is Redux?',
         answer: 'A predictable state container for JavaScript apps.'
-      }
+      },
     ]
   },
   ReactNative: {
     title: 'React-Native',
+    count: 1,
     questions: [
       {
         question: 'Why do we use React Native?',
         answer: 'React Native allows us to build native android and iOS apps using the principles of React'
-      }
+      },
     ]
   },
   Flexbox: {
     title: 'Flexbox',
+    count: 1,
     questions: [
       {
         question: 'How do we position elements on the main axis?',
         answer: 'By using justifyContent and the relevant props.'
-      }
+      },
     ]
   }
 
 } /* Our App's initial state*/
 
-export const getDecks = () => {
+export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY)
       .then( result => {
-          if(result == null) {
+          if(result === null) {
               AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initialAppState));
               return initialAppState
               console.log('Initial state rendered')
@@ -62,7 +66,7 @@ export const getDecks = () => {
       })
 }
 
-export const getDeck = (id) => {
+export function getDeck(id) {
   return AsyncStorage.getItem(STORAGE_KEY)
       .then(result => {
           const card = JSON.parse(result)
@@ -70,12 +74,17 @@ export const getDeck = (id) => {
       })
 }
 
-export const saveDeckTitle = (deck) => {
-    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
-    console.log('New Title saved');
+export function saveNewDeck(title) {
+    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
+      title: {
+        title,
+        questions:[]
+      }
+    }))
+    console.log('New Deck saved');
 }
 
-export const addCardToDeck = (title, card) => {
+export function addCardToDeck(title, card) {
     return AsyncStorage.getItem(STORAGE_KEY)
         .then(result => {
             return JSON.parse(result)[title]
@@ -101,7 +110,7 @@ export function clearLocalNotification() {
         .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
-export const setLocalNotification = () => {
+export function setLocalNotification() {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {

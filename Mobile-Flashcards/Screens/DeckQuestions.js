@@ -12,8 +12,8 @@ import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
-import { addTitle, addQuestions } from '../actions'
-import { saveDeckTitle, addCardToDeck } from '../Utils/Helpers'
+import { addQuestions } from '../actions'
+import { addCardToDeck } from '../Utils/Helpers'
 
 class DeckQuestions extends React.Component {
 
@@ -48,8 +48,6 @@ class DeckQuestions extends React.Component {
     }
 
 
-    this.props.dispatch(addTitle(newTitle));
-    saveDeckTitle(newTitle);
     this.props.dispatch(addQuestions(params));
     addCardToDeck(newTitle, card);
 

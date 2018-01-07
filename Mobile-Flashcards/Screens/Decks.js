@@ -29,21 +29,18 @@ class Decks extends Component {
   render() {
 
     const { navigate } = this.props.navigation;
-    const getDeckData = this.returnDeckData()
+    const getDeckData = this.returnDeckData();
 
-    cardCount=(itemQuestions) => {
-      if (typeof itemQuestions[0] !== undefined || itemQuestions[0] !== null){
+    cardCount = (itemCount) => {
 
-          if(itemQuestions.length > 1 ){
-            return `${itemQuestions.length} Cards`
+          if (itemCount === 0 || itemCount > 1 ) {
+            return `${itemCount} Cards`
           }
-          else if(itemQuestions.length === 1){
-            return `${itemQuestions.length} Card`
+          else {
+            return `${itemCount} Card`
           }
-      else{
-        return '0 Cards';
-      }
     }
+
 
     return (
       <FlatList
@@ -51,14 +48,15 @@ class Decks extends Component {
           data={getDeckData}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.questions) })}>
-              <CardView name={item.title} cards={cardCount(item.questions)} />
+            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.count) })}>
+              <CardView name={item.title} cards={cardCount(item.count)} />
             </TouchableOpacity>
           )}
       />
     )
   }
 }
+
 
 
 function mapStateToProps(state) {

@@ -17,6 +17,8 @@ import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 import DeckQuestions from './DeckQuestions'
 import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+import { saveNewDeck } from '../Utils/Helpers'
 /*import { addTitle } from '../actions'
 import { saveDeckTitle } from '../Utils/Helpers'*/
 
@@ -45,6 +47,9 @@ componentWillMount() {
           Alert.alert('Notice','This Deck Title already exists!');
         }/*test to see if the deck already exists*/
         else{
+
+          this.props.dispatch(addDeck(nDeckTitle));
+          saveNewDeck(nDeckTitle);
 
           Alert.alert(
             'Awesome!', 'Your New Deck Title is okay. Click OK to add a question.',
