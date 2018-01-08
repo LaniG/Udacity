@@ -74,13 +74,8 @@ export function getDeck(id) {
       })
 }
 
-export function saveNewDeck(title) {
-    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
-      title: {
-        title,
-        questions:[]
-      }
-    }))
+export function saveNewDeck(deck) {
+    return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
     console.log('New Deck saved');
 }
 
@@ -90,7 +85,7 @@ export function addCardToDeck(title, card) {
             return JSON.parse(result)[title]
         })
         .then(data => {
-            const {question, answer} = card;
+            const {count, question, answer} = card;
             const questions = data.questions.concat({
                 question,
                 answer
@@ -98,6 +93,7 @@ export function addCardToDeck(title, card) {
             AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
                 [title]: {
                     title,
+                    count,
                     questions
                 }
             }));

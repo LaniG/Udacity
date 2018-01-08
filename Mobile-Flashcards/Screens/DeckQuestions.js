@@ -1,9 +1,6 @@
 /*PURPOSE: this component is responsible for taking
 the questions and answers for each Deck title and updating the Store
 
-TODO: The title addition works now, however the questions.length function implemented
-earlier to count the number of cards is breaking the code.
-We need to implement this count feature
 */
 
 import React from 'react'
@@ -32,11 +29,15 @@ class DeckQuestions extends React.Component {
   submitQuestion = () => {
     const { navigate } = this.props.navigation;
     const deckTitle = this.props.navigation.state.params.title;
-    const newTitle = {title: deckTitle, questions: []};
     const questions = [];
     const { question, answer } = this.state;
-    const params = { deckTitle, questions, question, answer };
-    const card = { questions, question, answer };
+
+    const {decks} = this.props;
+    const count = decks[deckTitle].count +1;
+
+    const params = { deckTitle, count, questions, question, answer };
+    const card = { count, questions, question, answer };
+
 
   if (question === ''){
       Alert.alert('Going too fast!','Please remember to add a question');
@@ -47,9 +48,8 @@ class DeckQuestions extends React.Component {
       return;
     }
 
-
     this.props.dispatch(addQuestions(params));
-    addCardToDeck(newTitle, card);
+    addCardToDeck(deckTitle, card);
 
 
     Alert.alert('Great News',`Your new question was added to the Deck: ${deckTitle}`,

@@ -1,13 +1,5 @@
 /*PURPOSE: this component is responsible for taking the title and possibly
-the questions and answers for the App. Not sure If a new screen is
-needed for the Q&A.
-
-TODO:
-After I create the list of Decks to be added to the Store,
-I need to return here to:
-- add the new title to the Store
-- send the title over to the DeckQuestions.js file to be used as a key to add questions
-
+the questions and answers for the App.
 */
 
 import React from 'react'
@@ -19,16 +11,15 @@ import DeckQuestions from './DeckQuestions'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { saveNewDeck } from '../Utils/Helpers'
-/*import { addTitle } from '../actions'
-import { saveDeckTitle } from '../Utils/Helpers'*/
+
 
 class DeckNew extends React.Component {
 
-componentWillMount() {
-  this.setState({
-    newDeckTitle: ''
-  })
-}
+  componentWillMount() {
+    this.setState({
+      newDeckTitle: ''
+    })
+  }
 
   render() {
 
@@ -37,30 +28,35 @@ componentWillMount() {
     const saveTitle = () => {
 
       const {decks} = this.props;
-      const nDeckTitle = this.state.newDeckTitle;
+      const deckTitle = this.state.newDeckTitle;
+      const newDeck = {
+        deckTitle: {
+          title: deckTitle,
+          count: 0,
+          questions: []
+        }
+      }
 
-      if (!nDeckTitle) {
+      if (!deckTitle) {
         Alert.alert('Title Required','Please Enter a New Deck Title to Continue');
       } /*test to see if the title field is blank*/
-      else{
-        if(decks[nDeckTitle]){
-          Alert.alert('Notice','This Deck Title already exists!');
-        }/*test to see if the deck already exists*/
-        else{
+      else if (decks[deckTitle]){
+        Alert.alert('Notice','This Deck Title already exists!');
+      }/*test to see if the deck already exists*/
+      else {
 
-          this.props.dispatch(addDeck(nDeckTitle));
-          saveNewDeck(nDeckTitle);
+          this.props.dispatch(addDeck(newDeck));
+          saveNewDeck(newDeck);
 
           Alert.alert(
-            'Awesome!', 'Your New Deck Title is okay. Click OK to add a question.',
+            'Awesome!', `Your New Deck Title: ${deckTitle} is okay. Click OK to add a question.`,
             [
-              {text: 'OK', onPress: () => navigate('DeckQuestions', { title: `${this.state.newDeckTitle}` } )},
+              {text: 'OK', onPress: () => navigate('DeckQuestions', { title: deckTitle } )},
 
             ],
           )/*end of the confirmation alert*/
-        }/*end of second else which adds the title to storage and state*/
+        }/*end of 3rd else which adds the title to storage and state*/
       }
-    }
 
     return(
       <KeyboardAvoidingView style={{flex: 1}} behavior='padding'>

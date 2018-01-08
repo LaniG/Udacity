@@ -12,14 +12,18 @@ function decks(state = {}, action) {
     case ADD_DECK:
       return {
         ...state,
-        ...action.title, count: 0, questions: []
+        ...action.deck
       }
     case ADD_QUESTIONS:
-      const {title, questions, question, answer} = action.params;
+      const {title, count, questions, question, answer} = action.params;
       const newQuestion = JSON.parse(JSON.stringify(questions)).concat([ { question, answer } ]);
       return {
         ...state,
-        [title]: {...state[title], count: count +1,  questions: newQuestion},
+        [title]: {
+          ...state[title],
+          count: count,
+          questions: newQuestion
+        }
       }
     default:
       return state

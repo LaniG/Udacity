@@ -1,9 +1,4 @@
 /*PURPOSE: this component is responsible for taking all the titles and quesitons form the store and map over them as a quiz
-
-TODO: After I create the list of Decks to be added to the Store,
-I need to return here to:
-- use mapStateToProps to access the store data, specifically the title that was passed
-- map over the questions associated to that card title.
 */
 
 import React from 'react'

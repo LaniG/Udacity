@@ -1,8 +1,4 @@
 /*PURPOSE: this component is responsible for showing a card title with options to add new questions or start a quiz
-
-TODO: After I create the list of Decks to be added to the Store,
-I need to return here to:
-- used mapStateToProps to access the title in the store and the number of questions (aka. cards) associated with it.
 */
 
 import React from 'react'
@@ -30,7 +26,7 @@ const { params } = this.props.navigation.state;
       <View style={{flex: 1}}>
         <CardView
           name={params.name}
-          cards={params.cards} /*these are not pulling over...*/
+          cards={params.cards}
         />
 
         <View style={styles.container}>

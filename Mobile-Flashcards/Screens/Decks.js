@@ -1,8 +1,5 @@
 /*PURPOSE: this component is the main view of the mobile FLASHCARDS app. It is responsible for displaying all the titles
 and associated cards (aka. questions) of each title. The titles are also clickable which will link to the DeckView.js component
-
-TODO: there is an error in this file to debug concerning the connect(Decks)
-Error messgae: Actions must be plain objects. Use custom middleware for async actions.
 */
 
 import React, { Component } from 'react'
@@ -30,6 +27,8 @@ class Decks extends Component {
 
     const { navigate } = this.props.navigation;
     const getDeckData = this.returnDeckData();
+
+    console.log(getDeckData);
 
     cardCount = (itemCount) => {
 
