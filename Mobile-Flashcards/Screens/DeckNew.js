@@ -30,7 +30,7 @@ class DeckNew extends React.Component {
       const {decks} = this.props;
       const deckTitle = this.state.newDeckTitle;
       const newDeck = {
-        deckTitle: {
+        [deckTitle]: {
           title: deckTitle,
           count: 0,
           questions: []

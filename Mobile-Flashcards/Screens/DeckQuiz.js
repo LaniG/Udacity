@@ -3,10 +3,11 @@
 
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
 
-export default class DeckQuiz extends React.Component {
+class DeckQuiz extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.title}`,
@@ -14,28 +15,77 @@ export default class DeckQuiz extends React.Component {
   /*this is the text shown at the top of this screen, specific to each card
   */
 
-  render(){
-    return(
-      <View style={{flex: 1}}>
-        <Text>1/2</Text>
-
-        <View style={styles.TopSection}>
-          <Text style={{flex: 1, marginTop:10}}>Question: </Text>
-          <Text style={{flex: 4, fontSize:20, textAlign: 'center',}}> What is React Native?</Text>
-        </View>
-        <View style={[styles.TopSection, {flex: 2}]}>
-          <Text style={{flex: 1, marginTop:10}}>Answer: </Text>
-          <Text style={{flex: 4, fontSize:20, textAlign: 'center',}}> A React Native app is a real mobile app. With React Native, you don't build a "mobile web app", an "HTML5 app", or a "hybrid app". You build a real mobile app that's indistinguishable from an app built using Objective-C or Java.</Text>
-          <View style={[styles.scoreButtons, {flex: 2}]}>
-            <Button buttonText='Correct' />
-            <Button buttonText='inCorrect' />
-          </View>
-          <Text style={{flex: 1}}>Correct: 1/2</Text>
-        </View>
-      </View>
-    )
+  state = {
+    showAnswer: false,
+    currentQuestion: 0,
+    score: 0,
   }
-}
+
+  isCorrect = () => {
+      const {currentQuestion, score} = this.state;
+      this.setState({currentQuestion: currentQuestion + 1, score: score + 1, showAnswer: false});
+  }
+  isWrong = () => {
+      this.setState({currentQuestion: this.state.currentQuestion + 1});
+  }
+  showQuizAnswer = () => {
+      this.setState({showAnswer: !this.state.showAnswer});
+  }
+
+  startQuiz = () => {
+      this.setState({currentQuestion: 0, score: 0, showAnswer: false});
+  }
+  backToDeck = () => {
+      this.props.navigation.goBack();
+  }
+
+  render() {
+    const {currentQuestion, score, showAnswer} = this.state;
+    const deckTitle = this.props.navigation.state.params.title;
+    const {decks} = this.props;
+    const questions = decks[deckTitle].questions;
+    const quizLength = decks[deckTitle].count;
+    const questionsLeft = quizLength - currentQuestion;
+    const quizValidation = currentQuestion < quizLength;
+
+
+    return (
+      <View style={{flex: 1}}>
+
+        {quizValidation ? ( /*A test to see if we should display quiz questions*/
+          <View>
+            {showAnswer ? (
+              <View style={[styles.TopSection, {flex: 4}]}>
+                <Text style={styles.quizText}>{questions[currentQuestion].answer}</Text>
+                <View style={[styles.scoreButtons, {flex: 1}]}>
+                  <Button buttonText='Question' onPress={this.showAnswer}/>
+                </View>
+              </View>
+            ):(
+              <View style={[styles.TopSection, {flex: 4}]}>
+                <Text style={styles.quizText}>{questions[currentQuestion].question}</Text>
+                <View style={[styles.scoreButtons, {flex: 1}]}>
+                  <Button buttonText='Answer' onPress={this.showAnswer}/>
+                </View>
+              </View>
+            )}
+
+            <View style={[styles.TopSection, {flex: 2}]}>
+              <View style={[styles.scoreButtons, {flex: 2}]}>
+                <Button buttonText='Correct' onPress={this.isCorrect}/>
+                <Button buttonText='inCorrect' onPress={this.isWrong}/>
+              </View>
+              <Text style={{flex: 1}}>Correct: {this.state.score}/{quizLength} | Progress: {questionsLeft} of {quizLength}</Text>
+            </View>
+          </View>
+        ):(
+          <Text>test</Text>
+        )}
+
+      </View>
+    )/*end of return*/
+  }/*end of render*/
+}/*end deckQuiz*/
 
 const styles = StyleSheet.create({
   TopSection: {
@@ -43,7 +93,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: white,
-    height: 200,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',
@@ -60,7 +109,19 @@ const styles = StyleSheet.create({
   scoreButtons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-
   },
+  quizText: {
+    flex:1,
+    fontSize:30,
+    marginTop:50,
+  }
 
 })
+
+function mapStateToProps(state){
+  return {
+    decks: state,
+  }
+}
+
+export default connect(mapStateToProps)(DeckQuiz)

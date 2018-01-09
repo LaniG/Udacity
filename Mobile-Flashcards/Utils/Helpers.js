@@ -92,9 +92,9 @@ export function addCardToDeck(title, card) {
             });
             AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
                 [title]: {
-                    title,
-                    count,
-                    questions
+                    title: title,
+                    count: count,
+                    questions: questions
                 }
             }));
         })
