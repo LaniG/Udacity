@@ -34,7 +34,7 @@ const { params } = this.props.navigation.state;
             onPress={() => navigate('DeckQuestions', { title: `${params.name}`} )}
           />
           <Button buttonText='Start'
-            onPress={() => navigate('DeckQuiz', { title: `${params.name} Quiz`} )}
+            onPress={() => navigate('DeckQuiz', { title: `${params.name}`} )}
           />
         </View>
       </View>

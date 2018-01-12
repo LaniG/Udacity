@@ -10,7 +10,7 @@ import { white } from '../Utils/Colors'
 class DeckQuiz extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.title}`,
+    title: `${navigation.state.params.title} Quiz`,
   })
   /*this is the text shown at the top of this screen, specific to each card
   */
@@ -42,6 +42,7 @@ class DeckQuiz extends React.Component {
   render() {
     const {currentQuestion, score, showAnswer} = this.state;
     const deckTitle = this.props.navigation.state.params.title;
+    console.log(deckTitle);
     const {decks} = this.props;
     const questions = decks[deckTitle].questions;
     const quizLength = decks[deckTitle].count;
@@ -55,14 +56,14 @@ class DeckQuiz extends React.Component {
         {quizValidation ? ( /*A test to see if we should display quiz questions*/
           <View>
             {showAnswer ? (
-              <View style={[styles.TopSection, {flex: 4}]}>
+              <View style={styles.TopSection}>
                 <Text style={styles.quizText}>{questions[currentQuestion].answer}</Text>
-                <View style={[styles.scoreButtons, {flex: 1}]}>
+                <View style={styles.scoreButtons}>
                   <Button buttonText='Question' onPress={this.showAnswer}/>
                 </View>
               </View>
             ):(
-              <View style={[styles.TopSection, {flex: 4}]}>
+              <View style={styles.TopSection}>
                 <Text style={styles.quizText}>{questions[currentQuestion].question}</Text>
                 <View style={[styles.scoreButtons, {flex: 1}]}>
                   <Button buttonText='Answer' onPress={this.showAnswer}/>
@@ -70,8 +71,8 @@ class DeckQuiz extends React.Component {
               </View>
             )}
 
-            <View style={[styles.TopSection, {flex: 2}]}>
-              <View style={[styles.scoreButtons, {flex: 2}]}>
+            <View style={styles.TopSection}>
+              <View style={styles.scoreButtons}>
                 <Button buttonText='Correct' onPress={this.isCorrect}/>
                 <Button buttonText='inCorrect' onPress={this.isWrong}/>
               </View>

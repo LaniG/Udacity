@@ -30,7 +30,7 @@ export const initialAppState = {
     ]
   },
   ReactNative: {
-    title: 'React-Native',
+    title: 'ReactNative',
     count: 1,
     questions: [
       {

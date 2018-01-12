@@ -34,7 +34,7 @@ class DeckQuestions extends React.Component {
 
     const {decks} = this.props;
     const count = decks[deckTitle].count +1;
-    console.log(count);
+    //console.log(count);
 
     const params = { deckTitle, count, questions, question, answer };
     const card = { count, questions, question, answer };

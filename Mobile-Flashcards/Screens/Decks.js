@@ -28,7 +28,7 @@ class Decks extends Component {
     const { navigate } = this.props.navigation;
     const getDeckData = this.returnDeckData();
 
-    console.log(this.props.decks);
+    //console.log(this.props.decks);
 
     cardCount = (itemCount) => {
 
