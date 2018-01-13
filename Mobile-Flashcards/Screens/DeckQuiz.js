@@ -40,47 +40,56 @@ class DeckQuiz extends React.Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     const {currentQuestion, score, showAnswer} = this.state;
     const deckTitle = this.props.navigation.state.params.title;
-    console.log(deckTitle);
     const {decks} = this.props;
     const questions = decks[deckTitle].questions;
     const quizLength = decks[deckTitle].count;
-    const questionsLeft = quizLength - currentQuestion;
+    const progress = currentQuestion + 1;
     const quizValidation = currentQuestion < quizLength;
+    console.log(quizValidation);
 
 
     return (
       <View style={{flex: 1}}>
 
         {quizValidation ? ( /*A test to see if we should display quiz questions*/
-          <View>
+          <View style={{flex: 2}}>
             {showAnswer ? (
-              <View style={styles.TopSection}>
+              <View style={[styles.TopSection,{flex:3}]}>
                 <Text style={styles.quizText}>{questions[currentQuestion].answer}</Text>
                 <View style={styles.scoreButtons}>
-                  <Button buttonText='Question' onPress={this.showAnswer}/>
+                  <Button buttonText='Question' onPress={this.showQuizAnswer}/>
                 </View>
               </View>
             ):(
-              <View style={styles.TopSection}>
+              <View style={[styles.TopSection,{flex:3}]}>
                 <Text style={styles.quizText}>{questions[currentQuestion].question}</Text>
                 <View style={[styles.scoreButtons, {flex: 1}]}>
-                  <Button buttonText='Answer' onPress={this.showAnswer}/>
+                  <Button buttonText='Answer' onPress={this.showQuizAnswer}/>
                 </View>
               </View>
             )}
 
-            <View style={styles.TopSection}>
+            <View style={[styles.TopSection,{flex:1}]}>
               <View style={styles.scoreButtons}>
                 <Button buttonText='Correct' onPress={this.isCorrect}/>
                 <Button buttonText='inCorrect' onPress={this.isWrong}/>
               </View>
-              <Text style={{flex: 1}}>Correct: {this.state.score}/{quizLength} | Progress: {questionsLeft} of {quizLength}</Text>
+              <Text style={{flex: 1}}>Correct: {this.state.score}/{quizLength} | Progress: {progress} of {quizLength}</Text>
             </View>
+
           </View>
         ):(
-          <Text>test</Text>
+          <View style={[styles.TopSection,{flex:3}]}>
+            <Text style={styles.quizText}>Your Quiz Score is</Text>
+            <Text style={styles.quizText}>{this.state.score}/{quizLength}</Text>
+            <View style={[styles.scoreButtons, {flex: 1}]}>
+              <Button buttonText='Re-Do' onPress={() => navigate('DeckQuiz', { title: `${deckTitle}`} )}/>
+              <Button buttonText='Done' onPress={() => navigate('Home')}/>
+            </View>
+          </View>
         )}
 
       </View>
@@ -94,6 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: white,
+    height: 200,
     borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',
