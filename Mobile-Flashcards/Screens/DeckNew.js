@@ -53,7 +53,8 @@ class DeckNew extends React.Component {
             [
               {text: 'OK', onPress: () => navigate('DeckView', {
                 title: deckTitle,
-                count: 0,
+                name: deckTitle,
+                cards: '0 Cards',
                 questions: []
               } )},
 
