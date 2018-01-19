@@ -86,8 +86,8 @@ class DeckQuiz extends React.Component {
             <Text style={styles.quizText}>Your Quiz Score is</Text>
             <Text style={styles.quizText}>{this.state.score}/{quizLength}</Text>
             <View style={[styles.scoreButtons, {flex: 1}]}>
-              <Button buttonText='Re-Do' onPress={() => navigate('DeckQuiz', { title: `${deckTitle}`} )}/>
-              <Button buttonText='Done' onPress={() => navigate('Home')}/>
+              <Button buttonText='Re-Do' onPress={this.startQuiz}/>
+              <Button buttonText='Done' onPress={this.backToDeck}/>
             </View>
           </View>
         )}

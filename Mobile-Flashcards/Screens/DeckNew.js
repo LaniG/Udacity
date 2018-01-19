@@ -7,7 +7,7 @@ import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Alert } from '
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
 import { white } from '../Utils/Colors'
-import DeckQuestions from './DeckQuestions'
+import DeckView from './DeckView'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
 import { saveNewDeck } from '../Utils/Helpers'
@@ -51,7 +51,11 @@ class DeckNew extends React.Component {
           Alert.alert(
             'Awesome!', `Your New Deck Title: ${deckTitle} is okay. Click OK to add a question.`,
             [
-              {text: 'OK', onPress: () => navigate('DeckQuestions', { title: deckTitle } )},
+              {text: 'OK', onPress: () => navigate('DeckView', {
+                title: deckTitle,
+                count: 0,
+                questions: []
+              } )},
 
             ],
           )/*end of the confirmation alert*/
@@ -69,7 +73,7 @@ class DeckNew extends React.Component {
               />
         </View>
         <Button
-          buttonText='Add Q&A'
+          buttonText='Add Deck'
             onPress={() => {
               saveTitle()
             }}
@@ -117,6 +121,5 @@ function mapStateToProps(state) {
     decks: state,
   }
 }
-
 
 export default connect(mapStateToProps)(DeckNew)
