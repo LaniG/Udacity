@@ -6,7 +6,7 @@ import React from 'react'
 import { Text, View, StyleSheet, TextInput, KeyboardAvoidingView, Alert } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 import Button from '../Components/Button'
-import { white } from '../Utils/Colors'
+import { white, border, shadow } from '../Utils/Colors'
 import DeckView from './DeckView'
 import { connect } from 'react-redux'
 import { addDeck } from '../actions'
@@ -94,9 +94,9 @@ const styles = StyleSheet.create({
     height: 200,
     borderWidth: 1,
     borderRadius: 2,
-    borderColor: '#ddd',
+    borderColor: border,
     borderBottomWidth: 0,
-    shadowColor: '#000',
+    shadowColor: shadow,
     shadowOffset: { Width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
