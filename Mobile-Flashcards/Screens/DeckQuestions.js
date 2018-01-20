@@ -14,17 +14,17 @@ import { addCardToDeck } from '../Utils/Helpers'
 
 class DeckQuestions extends React.Component {
 
-  static navigationOptions = ({ navigation }) => ({
-    title: `Add Questions to ${navigation.state.params.title}`,
-  })
-  /*this is the text shown at the top of this screen, specific to each card
-  */
-
   componentWillMount(){
     this.setState({
         question:'',
         answer:''
   })}
+
+  static navigationOptions = ({ navigation }) => ({
+    title: `Add Questions to ${navigation.state.params.title}`,
+  })
+  /*this is the text shown at the top of this screen, specific to each card
+  */
 
   submitQuestion = () => {
     const { navigate } = this.props.navigation;

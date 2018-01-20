@@ -1,20 +1,11 @@
 import React from 'react'
-import { View, StyleSheet, StatusBar } from 'react-native'
-import { Constants } from 'expo'
+import { View, StyleSheet } from 'react-native'
+import { UdaciStatusBar } from './Utils/StatusBar'
 import { MainScreen } from './Utils/Navigator'
 import { createStore} from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { blue } from './Utils/Colors'
-
-function UdaciStatusBar ({backgroundColor, ...props}) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
-/*This UdaciStatusBar function is responsible for displaying a custom status bar above our App */
 
 export default class App extends React.Component {
   render() {

@@ -23,7 +23,7 @@ const { navigate } = this.props.navigation;
 const { params } = this.props.navigation.state;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.defaultFlex}>
         <CardView
           name={params.name}
           cards={params.cards}
@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center'
   },
+  defaultFlex:{
+    flex: 1,
+  }
 })
 
 

@@ -49,7 +49,7 @@ class DeckNew extends React.Component {
           saveNewDeck(newDeck);
 
           Alert.alert(
-            'Awesome!', `Your New Deck Title: ${deckTitle} is okay. Click OK to add a question.`,
+            'Awesome!', `Your New Deck Title: ${deckTitle} is great! Click OK to access your new deck.`,
             [
               {text: 'OK', onPress: () => navigate('DeckView', {
                 title: deckTitle,
