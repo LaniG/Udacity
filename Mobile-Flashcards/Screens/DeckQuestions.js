@@ -56,7 +56,7 @@ class DeckQuestions extends React.Component {
 
       Alert.alert('Great News',`Your new question was added to the Deck: ${deckTitle}`,
         [
-          {text: 'OK', onPress: () => navigate('Home')}
+          {text: 'OK', onPress: () => navigate('DeckView', { title: deckTitle })}
         ])
     }
 

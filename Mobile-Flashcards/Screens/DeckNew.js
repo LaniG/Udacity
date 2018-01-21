@@ -51,13 +51,7 @@ class DeckNew extends React.Component {
           Alert.alert(
             'Awesome!', `Your New Deck Title: ${deckTitle} is great! Click OK to access your new deck.`,
             [
-              {text: 'OK', onPress: () => navigate('DeckView', {
-                title: deckTitle,
-                name: deckTitle,
-                cards: '0 Cards',
-                questions: []
-              } )},
-
+              {text: 'OK', onPress: () => navigate('DeckView', { title: deckTitle } )},
             ],
           )/*end of the confirmation alert*/
         }/*end of 3rd else which adds the title to storage and state*/

@@ -21,8 +21,6 @@ class Decks extends Component {
     return Object.values(this.props.decks)
   }
 
-
-
   render() {
 
     const { navigate } = this.props.navigation;
@@ -40,14 +38,13 @@ class Decks extends Component {
           }
     }
 
-
     return (
       <FlatList
           style={{flex: 1}}
           data={getDeckData}
           keyExtractor={(item, index) => index}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title, name: item.title, cards: cardCount(item.count) })}>
+            <TouchableOpacity onPress={() => navigate('DeckView', { title: item.title })}>
               <CardView name={item.title} cards={cardCount(item.count)} />
             </TouchableOpacity>
           )}
@@ -56,13 +53,10 @@ class Decks extends Component {
   }
 }
 
-
-
 function mapStateToProps(state) {
   return {
     decks: state,
   }
 }
-
 
 export default connect(mapStateToProps)(Decks);

@@ -3,6 +3,7 @@
 
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
 import Button from '../Components/Button'
@@ -19,22 +20,23 @@ static navigationOptions = ({ navigation }) => ({
 render() {
 
 const { navigate } = this.props.navigation;
-
-const { params } = this.props.navigation.state;
+const deckTitle = this.props.navigation.state.params.title;
+const {decks} = this.props;
+const cards = `Deck Total: ${decks[deckTitle].count}`;
 
     return (
       <View style={styles.defaultFlex}>
         <CardView
-          name={params.name}
-          cards={params.cards}
+          name={deckTitle}
+          cards={cards}
         />
 
         <View style={styles.container}>
           <Button buttonText='Add'
-            onPress={() => navigate('DeckQuestions', { title: `${params.name}`} )}
+            onPress={() => navigate('DeckQuestions', { title: `${deckTitle}`} )}
           />
           <Button buttonText='Start Quiz'
-            onPress={() => navigate('DeckQuiz', { title: `${params.name}`} )}
+            onPress={() => navigate('DeckQuiz', { title: `${deckTitle}`} )}
           />
         </View>
       </View>
@@ -52,5 +54,10 @@ const styles = StyleSheet.create({
   }
 })
 
+function mapStateToProps(state){
+  return {
+    decks: state,
+  }
+}
 
-export default DeckView;
+export default connect(mapStateToProps)(DeckView)
