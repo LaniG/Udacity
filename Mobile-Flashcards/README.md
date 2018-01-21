@@ -17,3 +17,9 @@ After cloning or downloading the project .zip file, you can use:
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+### Known Bugs
+This Mobile Flashcards React Native App has one known problem that is currently being investigated:
+* When ever a new question is added to a deck, a title-less/ undefined title card is also added.
+* This undefined title card has a copy of the question that was just added.
+* Upon refresh/ reloading the App, this undefined title card disappears.
