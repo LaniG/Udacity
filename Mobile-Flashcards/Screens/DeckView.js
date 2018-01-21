@@ -1,8 +1,11 @@
-/*PURPOSE: this component is responsible for showing a card title with options to add new questions or start a quiz
+/*PURPOSE: this component is responsible for showing a card title
+with options to add new questions or start a quiz
 */
 
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
+import { receiveDecks } from '../actions'
+import { getDecks } from '../Utils/Helpers'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import CardView from '../Components/CardView'
@@ -11,6 +14,14 @@ import DeckQuestions from './DeckQuestions'
 import DeckQuiz from './DeckQuiz'
 
 class DeckView extends React.Component {
+
+  componentDidMount() {
+    getDecks()
+    .then(decks => this.props.dispatch(receiveDecks(decks)))
+  } /*componentDidMount was added here because this screen would need
+  the most recent data held in the store. Apart from this invocation,
+  the App only receive a fresh copy of the new data when the Decks.js
+  screen is called*/
 
 static navigationOptions = ({ navigation }) => ({
   title: `${navigation.state.params.title} Card`,
