@@ -24,3 +24,6 @@ Navigate to the server location within a new terminal [ cd api-server ] then:
 
 npm install
 node server
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
