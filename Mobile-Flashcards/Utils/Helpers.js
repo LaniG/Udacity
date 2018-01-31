@@ -134,8 +134,7 @@ export function setLocalNotification() {
         })
 }
 
-function createNotification() {
-    return {
+const createNotification = () => ({
         title: 'Master React!',
         body: "Quiz yourself and master React in no time.",
         ios: {
@@ -147,5 +146,4 @@ function createNotification() {
             sticky: false,
             vibrate: true,
         }
-    }
-}
+})
