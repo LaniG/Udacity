@@ -27,7 +27,7 @@ export function addPost(post) {
   return dispatch => {
     return fetchService.post(
       ADD_POST,
-      "/posts",
+      "/",
       "Post",
       JSON.stringify(addPostRequest),
       dispatch,
@@ -52,7 +52,7 @@ export function editPost({ id, title, body }) {
   return dispatch => {
     return fetchService.put(
       EDIT_POST,
-      `/posts/${id}`,
+      `/${id}`,
       "Post",
       JSON.stringify(editPostRequest),
       dispatch,
@@ -74,7 +74,7 @@ export function voteOnPost(postId, vote) {
   return dispatch => {
     return fetchService.post(
       VOTE_ON_POST,
-      `/posts/${postId}`,
+      `/${postId}`,
       "Post",
       JSON.stringify({ option: vote }),
       dispatch,
@@ -93,11 +93,11 @@ export function fetchPostDetailsSuccessful(post) {
 export function fetchPostDetails(id) {
   return dispatch => {
     return fetchService
-      .get(FETCH_POST_DETAILS, `/posts/${id}`, "Post", dispatch, fetchPostDetailsSuccessful)
+      .get(FETCH_POST_DETAILS, `/${id}`, "Post", dispatch, fetchPostDetailsSuccessful)
       .then(post => {
         if (post) {
           fetchService
-            .get(FETCH_COMMENTS, `/posts/${post.id}/comments`, "Comment", dispatch)
+            .get(FETCH_COMMENTS, `/${post.id}/comments`, "Comment", dispatch)
             .then(comments => {
               dispatch(setCommentsCount(post.id, comments.length));
             });
@@ -127,11 +127,11 @@ export function setCommentsCount(postId, commentsCount) {
 export function fetchPosts() {
   return dispatch => {
     return fetchService
-      .get(FETCH_POSTS, "/posts", "Post", dispatch, fetchPostsSuccessful)
+      .get(FETCH_POSTS, "/", "Post", dispatch, fetchPostsSuccessful)
       .then(posts => {
         for (let post of posts) {
           fetchService
-            .get(FETCH_COMMENTS, `/posts/${post.id}/comments`, "Comment", dispatch)
+            .get(FETCH_COMMENTS, `/${post.id}/comments`, "Comment", dispatch)
             .then(comments => {
               dispatch(setCommentsCount(post.id, comments.length));
             });
@@ -151,7 +151,7 @@ export function deletePost(postId) {
   return dispatch => {
     return fetchService.delete(
       DELETE_POST,
-      `/posts/${postId}`,
+      `/${postId}`,
       "Post",
       dispatch,
       deletePostSuccessful(postId)
@@ -186,7 +186,7 @@ export function fetchPostsByCategory(category) {
       .then(posts => {
         for (let post of posts) {
           fetchService
-            .get(FETCH_COMMENTS, `/posts/${post.id}/comments`, "Comment", dispatch)
+            .get(FETCH_COMMENTS, `/${post.id}/comments`, "Comment", dispatch)
             .then(comments => {
               dispatch(setCommentsCount(post.id, comments.length));
             });

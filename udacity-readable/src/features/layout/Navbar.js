@@ -20,7 +20,7 @@ class Navbar extends Component {
 
         <Menu.Item
           as={Link}
-          to="/posts"
+          to="/"
           name="posts"
           onClick={this.handleMenuChange}
           active={activeItem === "addPost"}
@@ -30,7 +30,7 @@ class Navbar extends Component {
 
         <Menu.Item
           as={Link}
-          to="/posts/add"
+          to="/add"
           name="addPost"
           onClick={this.handleMenuChange}
           active={activeItem === "addPost"}

@@ -34,7 +34,7 @@ class EditPost extends Component {
     };
 
     this.props.editPost(post).then(_ => {
-      this.props.history.push(`/posts/${this.props.match.params.category}/${postId}`);
+      this.props.history.push(`/${this.props.match.params.category}/${postId}`);
     });
   };
 

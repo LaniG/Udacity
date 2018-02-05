@@ -35,7 +35,7 @@ class PostsContainer extends Component {
   };
 
   handleEdit = (postId, category) => {
-    this.props.history.push(`/posts/${category}/${postId}/edit/`);
+    this.props.history.push(`/${category}/${postId}/edit/`);
   };
 
   handleDelete = postId => {
@@ -53,9 +53,9 @@ class PostsContainer extends Component {
 
     if (category !== "All") {
       this.props.fetchPostsByCategory(category);
-      this.props.history.push(`/posts/${category}`);
+      this.props.history.push(`/${category}`);
     } else {
-      this.props.history.push("/posts");
+      this.props.history.push("/");
     }
   };
 
@@ -81,7 +81,7 @@ class PostsContainer extends Component {
             <Card key={item.id} fluid>
               <Card.Content>
                 <Card.Header>
-                  <Link to={`/posts/${item.category}/${item.id}`}>{item.title}</Link>
+                  <Link to={`/${item.category}/${item.id}`}>{item.title}</Link>
                   {"  "}
                   <Label pointing="left">{item.category}</Label>
                 </Card.Header>
@@ -168,7 +168,7 @@ class PostsContainer extends Component {
           {this._renderCategories()}
           <div className="column">
             <div>
-              <Link to="/posts/add">
+              <Link to="/add">
                 <button className="ui icon right labeled right floated primary button">
                   Add New Post <i className="plus icon" />
                 </button>

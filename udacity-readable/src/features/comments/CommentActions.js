@@ -112,7 +112,7 @@ export function fetchComments(postId) {
   return dispatch => {
     return fetchService.get(
       FETCH_COMMENTS,
-      `/posts/${postId}/comments`,
+      `/${postId}/comments`,
       "Comment",
       dispatch,
       fetchCommentsSuccessful
