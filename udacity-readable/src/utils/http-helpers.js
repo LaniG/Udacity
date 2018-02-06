@@ -14,7 +14,7 @@ export class FetchService {
     dispatch(fetchErrored(action, false));
     dispatch(fetchLoading(action, true));
 
-    return (async () => {
+    async function getStuff( {
       const response = await fetch(`${BaseApiUrl}${url}`, {
         headers: baseFetchHeaders
       });
@@ -29,7 +29,7 @@ export class FetchService {
         }
         return data;
       }
-    })();
+    }
   }
 
   delete(action, url, entityType, dispatch, successFunc) {
