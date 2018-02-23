@@ -50,12 +50,12 @@ class Post extends Component {
   };
 
   handleEdit = (postId, category) => {
-    this.props.history.push(`/${category}/${postId}/edit/`);
+    this.props.history.push(`/posts/${category}/${postId}/edit/`);
   };
 
   handleDelete = () => {
     this.props.deletePost(this.state.postId).then(_ => {
-      this.props.history.push("/");
+      this.props.history.push("/posts");
     });
   };
 

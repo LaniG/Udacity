@@ -33,11 +33,11 @@ class App extends Component {
         <div className="App-container">
           <Route path="/" component={PostsContainer} />
           <Switch>
-            <Route exact path="/add" component={AddPost} />
-            <Route exact path="/:category" component={PostsContainer} />
+            <Route exact path="/posts/add" component={AddPost} />
+            <Route exact path="/posts/:category" component={PostsContainer} />
           </Switch>
-          <Route exact path="/:category/:id/edit" component={EditPost} />
-          <Route exact path="/:category/:id" component={Post} />
+          <Route exact path="/posts/:category/:id/edit" component={EditPost} />
+          <Route exact path="/posts/:category/:id" component={Post} />
           <Route exact path="/404" component={Error404} />
         </div>
         <Footer />
