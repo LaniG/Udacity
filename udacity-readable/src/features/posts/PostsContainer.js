@@ -55,7 +55,8 @@ class PostsContainer extends Component {
       this.props.fetchPostsByCategory(category);
       this.props.history.push(`/posts/${category}`);
     } else {
-      this.props.history.push("/posts");
+      this.props.fetchPosts(); //fetch all posts to ensure the ALL button shows all posts
+      this.props.history.push("/"); //the link was incorrectly stated before.
     }
   };
 
